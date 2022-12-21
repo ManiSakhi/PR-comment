@@ -1,5 +1,4 @@
 require 'octokit'
-
 # !!! DO NOT EVER USE HARD-CODED VALUES IN A REAL APP !!!
 # Instead, set and test environment variables, like below
 client = Octokit::Client.new :access_token => ENV['MY_PERSONAL_TOKEN']
