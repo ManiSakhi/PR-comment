@@ -15,8 +15,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Update with Datetime of Workflow
-        uses: ManiSakhi/PR-comment@main
+      - name: Datetime of Workflow
+        uses: ZekeriyaAY/workflow-datetime@v1.0.2
+
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           # date_format: '%a  %d %b %Y  %H:%M:%S%Z'
