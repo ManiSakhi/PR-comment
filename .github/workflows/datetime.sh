@@ -1,2 +1,2 @@
 now="$(date)"
-printf "committed date and time %s\n" "$now"
+echo "committed date and time %s\n" "$now"
