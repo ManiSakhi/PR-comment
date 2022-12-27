@@ -2,6 +2,8 @@ name: PR comments
 on:
   pull_request:
     branches: [ "main" ]
+  issue_comment:
+    types: [created, deleted]
 jobs:
   prcomment:
     name: Read PR Comments
@@ -11,3 +13,16 @@ jobs:
     - uses: actions/checkout@v3
     - run: ruby -r ./.github/workflows/octokit.rb
     - run: sh ./.github/workflows/datetime.sh
+  pr_commented:
+  # This job only runs for pull request comments
+    name: PR comment
+    #if: ${{ github.event.issue.pull_request }} && contains(github.event.comment.body, 'build now')
+    if: contains(github.event.comment.body, 'build now')
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo A comment on: PR $NUMBER \n Body of the comment: $COMMENT
+    # this where you should add code to trigger jenkins job. except jenkins url, rest of the values like branch name, etc should be parameterized.
+        env:
+          NUMBER: ${{ github.event.issue.number }}
+          COMMENT: ${{ github.event.comment.body }}
