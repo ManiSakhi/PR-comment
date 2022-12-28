@@ -1,19 +1,24 @@
-name: pull request comment
+name: PR comment
+
 on:
-  # Trigger the workflow on pull request comment
-  pull_request:
-    branches:
-      - main
-      - branch-1
+  issue_comment:
+    types: [created, deleted]
 
 jobs:
   comment:
+    if: contains(github.event.comment.body, 'build now')
+
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/github-script@v3
-        with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          script: |
-            github.event.comment.body,build now
-              body: 'comment on pr'
-            })
+      - name: Add comment to PR
+        env:
+          URL: ${{ github.event.issue.comments_url }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          curl \
+            -X POST \
+            $URL \
+            -H "Content-Type: application/json" \
+            -H "Authorization: token $GITHUB_TOKEN" \
+            --data '{ "body": "build now" }'
