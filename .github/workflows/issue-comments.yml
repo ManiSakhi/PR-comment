@@ -1,17 +1,20 @@
 name: pull request comment
 on:
-  issue_comment:                                     
+  pull_request:
+    branches: [ "main" ]
+  issue_comment:
     types: [created, deleted]
 jobs:
- job01:
-   if: contains(github.event.issue.pull_request, '/build now')    # check if the comments come from pull request, exclude those from issue.
-   runs-on: ubuntu-latest
-   steps:
-    - name: say hello
-      if: contains(github.event.issue.pull_request, '/build now')   # check the comment if it contains the keywords
-      run: |
-       echo say hello
-    - name: test
-      if: contains(github.event.issue.pull_request, '/build now')  # check the comment if it contains the keywords
-      run: |
-       echo test
+  pr_commented:
+    # This job only runs for pull request comments
+    name: PR comment
+    #if: ${{ github.event.issue.pull_request }} && contains(github.event.comment.body, 'build now')
+    if: contains(github.event.comment.body, 'build now')
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo A comment on: PR $NUMBER \n Body of the comment: $COMMENT
+    # this where you should add code to trigger jenkins job. except jenkins url, rest of the values like branch name, etc should be parameterized.
+        env:
+          NUMBER: ${{ github.event.issue.number }}
+          COMMENT: ${{ github.event.comment.body }}
