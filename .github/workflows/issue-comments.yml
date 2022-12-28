@@ -9,7 +9,7 @@ jobs:
     # This job only runs for pull request comments
     name: PR comment
     if: ${{ github.event.issue.pull_request }}                       #  && contains(github.event.comment.body, 'build now')
-   # if: contains(github.event.comment.body, 'build now')
+   # if: contains(github.event.comment.body, 'build now')   # check if the comments come from pull request, exclude those from issue.
     runs-on: ubuntu-latest
     steps:
       - run: |
