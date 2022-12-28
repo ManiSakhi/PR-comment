@@ -13,7 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          echo A comment on: PR $NUMBER #\n Body of the comment: $COMMENT
+          echo A comment on: PR $NUMBER
+          # \n Body of the comment: $COMMENT
     # this where you should add code to trigger jenkins job. except jenkins url, rest of the values like branch name, etc should be parameterized.
         env:
           NUMBER: ${{ github.event.issue.number }}
