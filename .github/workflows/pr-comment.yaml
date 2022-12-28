@@ -19,6 +19,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@main
-      - uses: ManiSakhi/PR-comment
+      - uses: ManiSakhi/PR-comment/comment-on-pr@main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}        
