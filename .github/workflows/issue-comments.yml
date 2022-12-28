@@ -1,9 +1,7 @@
 name: pull request comment
 on:
   pull_request:
-   branches-ignore:
-      - main  
-   # branches: [ "any branch" ]
+    branches: [ "main" ]
   issue_comment:
     types: [created, deleted]
 jobs:
