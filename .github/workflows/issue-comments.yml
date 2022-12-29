@@ -14,6 +14,21 @@ jobs:
     steps:
       - run: |
           echo A comment on: PR $NUMBER \n Body of the comment: $COMMENT
-        env:
-          NUMBER: ${{ github.event.issue.number }}
-          COMMENT: ${{ github.event.comment.body }}
+    env:
+        NUMBER: ${{ github.event.issue.number }}
+        COMMENT: ${{ github.event.comment.body }}
+  jenkins_trigger:
+    name: Trigger Jenkins Job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger your-awesome-job-name job
+        uses: toptal/jenkins-job-trigger-action@master
+        with:
+          jenkins_url: " https://8422-2406-7400-43-2c91-fbde-9005-8fc9-54fe.in.ngrok.io "
+          jenkins_user: ${{ secrets.JENKINS_USER }}
+          jenkins_token: ${{ secrets.JENKINS_TOKEN }}
+          #proxy: ${{ secrets.JENKINS_PROXY }}
+          job_name: "Jenkins-Github-action"
+          job_params: |
+            {
+              "param_1": "v
