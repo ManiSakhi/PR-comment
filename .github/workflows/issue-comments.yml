@@ -21,7 +21,7 @@ jobs:
     name: Trigger Jenkins Job
     runs-on: ubuntu-latest
     steps:
-      - name: Trigger your-awesome-job-name job
+      - name: Trigger your-job
         uses: toptal/jenkins-job-trigger-action@master
         with:
           jenkins_url: " https://8422-2406-7400-43-2c91-fbde-9005-8fc9-54fe.in.ngrok.io "
@@ -30,4 +30,7 @@ jobs:
           job_name: "Jenkins-Github-action"
           job_params: |
             {
-              "param_1": "v
+            "param_1": "v"
+            "param_2": "value_2"
+            }
+          job_timeout: "3600" # Default 30 sec. (optional)
