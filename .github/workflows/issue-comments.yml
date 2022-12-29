@@ -28,9 +28,4 @@ jobs:
           jenkins_user: ${{ secrets.JENKINS_USER }}
           jenkins_token: ${{ secrets.JENKINS_TOKEN }}
           job_name: "Jenkins-Github-action"
-          job_params: |
-            {
-            "param_1": "v"
-            "param_2": "value_2"
-            }
           job_timeout: "3600" # Default 30 sec. (optional)
