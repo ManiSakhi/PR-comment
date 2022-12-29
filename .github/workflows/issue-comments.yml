@@ -27,7 +27,6 @@ jobs:
           jenkins_url: " https://8422-2406-7400-43-2c91-fbde-9005-8fc9-54fe.in.ngrok.io "
           jenkins_user: ${{ secrets.JENKINS_USER }}
           jenkins_token: ${{ secrets.JENKINS_TOKEN }}
-          #proxy: ${{ secrets.JENKINS_PROXY }}
           job_name: "Jenkins-Github-action"
           job_params: |
             {
